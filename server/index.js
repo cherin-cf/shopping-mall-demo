@@ -51,8 +51,17 @@ app.use((req, res, next) => {
 
 // 에러 핸들러
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: 'Internal server error' });
+  console.error('❌ [서버 에러]', {
+    message: err.message,
+    stack: err.stack,
+    url: req.url,
+    method: req.method,
+  });
+  res.status(500).json({ 
+    success: false,
+    message: 'Internal server error',
+    error: process.env.NODE_ENV === 'development' ? err.message : undefined
+  });
 });
 
 // 포트를 사용 중인 프로세스 종료 함수 (Windows)

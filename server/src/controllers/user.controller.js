@@ -13,9 +13,21 @@ exports.register = async (req, res) => {
   try {
     const { email, name, password, user_type, address } = req.body;
 
+    console.log('[회원가입 요청]', { email, name, user_type, address: address ? '있음' : '없음' });
+
+    // 필수 필드 검증
+    if (!email || !name || !password) {
+      console.log('[회원가입 실패] 필수 필드 누락');
+      return res.status(400).json({
+        success: false,
+        message: '필수 필드를 모두 입력해주세요',
+      });
+    }
+
     // 이메일 중복 확인
     const existingUser = await User.findOne({ email });
     if (existingUser) {
+      console.log('[회원가입 실패] 이미 등록된 이메일:', email);
       return res.status(400).json({
         success: false,
         message: '이미 등록된 이메일입니다',
@@ -27,6 +39,7 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // 유저 생성
+    console.log('[회원가입 진행] 유저 생성 시도...');
     const user = await User.create({
       email,
       name,
@@ -34,6 +47,8 @@ exports.register = async (req, res) => {
       user_type: user_type || 'customer',
       address,
     });
+
+    console.log('[회원가입 성공] 유저 생성 완료:', user._id, user.email);
 
     // 비밀번호 제외하고 응답
     const userResponse = {
@@ -51,6 +66,12 @@ exports.register = async (req, res) => {
       data: userResponse,
     });
   } catch (error) {
+    console.error('[회원가입 에러]', error);
+    console.error('[회원가입 에러 상세]', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name,
+    });
     res.status(400).json({
       success: false,
       message: error.message,
