@@ -1,0 +1,177 @@
+/* ===== Top Banner ===== */
+.top-banner {
+  background: #f5f5f5;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 13px;
+  color: #333;
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+
+.top-banner p {
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.banner-close {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #999;
+}
+
+.banner-close:hover {
+  color: #333;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 35px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: #000;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.btn-icon:hover {
+  color: #000;
+}
+
+.nav-action {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #333;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+.nav-action:hover {
+  color: #000;
+}
+
+.nav-action svg {
+  width: 14px;
+  height: 14px;
+}
+
+.cart-link {
+  font-size: 13px;
+}
+
+.welcome-message {
+  font-size: 12px;
+  color: #333;
+  padding: 6px 12px;
+  background: #f8f8f8;
+  border-radius: 4px;
+}
+
+.loading-text {
+  font-size: 12px;
+  color: #888;
+}
+
+.admin-link {
+  color: #e85a4f;
+  font-weight: 600;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+  .navbar-menu {
+    display: none;
+  }
+  
+  .navbar-container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-message {
+    display: none;
+  }
+  
+  .nav-action span {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-banner {
+    font-size: 11px;
+    padding: 8px 40px 8px 15px;
+  }
+  
+  .navbar-logo {
+    font-size: 16px;
+  }
+  
+  .navbar-actions {
+    gap: 10px;
+  }
+}
+
